@@ -1,0 +1,6 @@
+{
+    "nopCommerceLink" : "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2FAdmin",
+    "viewport" : "macbook-16",
+    "email" : "admin@yourstore.com",
+    "password" : "admin"
+}
