@@ -33,14 +33,35 @@ describe('API Testing', () => {
 
     })
 
-    it('Get', () => {
+    it('API Github Token', () => {
 
-        cy.request('GET', 'https://reqres.in/api/users/2').then((response) => {
+        cy.request({
 
-            expect(response.status).to.eq(200)
-            expect(response.body.name).to.eq('Stella')
-            expect(response.body.job).to.eq('QA Lead')
+            method: 'GET',
+            url: 'https://api.github.com/user/repos',
+            headers: {
+                "Authorization" : "Bearer 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"
+            }
 
+        }).then((apiResult) => {
+
+            expect(apiResult.status).to.eq(200)
+            expect(apiResult.body[3].full_name).to.contain('cypress_capstone')
+            expect(apiResult.duration).to.be.below(1000)
+
+        })
+
+    })
+
+    it.skip('API Create Repository', () => {
+
+        cy.request({
+
+            method: 'POST',
+            url: 'https://api.github.com/user/repos',
+
+
+            
         })
 
     })

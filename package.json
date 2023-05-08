@@ -238,7 +238,8 @@
     "yocto-queue": "^0.1.0"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "executeTestOnChromeHeaded" : "npx cypress run --spec .\\cypress\\e2e\\nopCommerce_spec.cy.js --browser chrome --headed"
   },
   "keywords": [],
   "author": "",

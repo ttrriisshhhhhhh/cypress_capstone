@@ -2,6 +2,7 @@ import Login from "./pages/loginPage"
 import Product from "./pages/ProductPage"
 import Country from "./pages/CountriesPage"
 import Category from "./pages/CategoriesPage"
+import Shipments from "./pages/ShipmentsPage"
 
 describe('NopCommerce Capstone', () => {
 
@@ -9,6 +10,7 @@ describe('NopCommerce Capstone', () => {
     const productPage = new Product()
     const countriesPage = new Country()
     const categoriesPage = new Category()
+    const shipmentsPage = new Shipments()
     
     beforeEach( () => {
 
@@ -36,11 +38,11 @@ describe('NopCommerce Capstone', () => {
         loginPage.clickLogin()
 
         //validation
-        // cy.title().should('eq', 'Dashboard / nopCommerce administration')
+        cy.title().should('eq', 'Dashboard / nopCommerce administration')
 
         // cy.verifyElementText(cy.title(), 'Dashboard / nopCommerce administration')
 
-        cy.verifyTitle2(cy.title(), 'Dashboard / nopCommerce administration')
+        // cy.verifyTitle2(cy.title(), 'Dashboard / nopCommerce administration')
 
     })
 
@@ -114,7 +116,13 @@ describe('NopCommerce Capstone', () => {
 
     it('Shipment Search', () => {
 
+        shipmentsPage.goToSales()
 
+        shipmentsPage.enterStartDate()
+
+        shipmentsPage.enterEndDate()
+
+        shipmentsPage.clickSearch()
 
     })
 
