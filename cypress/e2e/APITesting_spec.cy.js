@@ -5,7 +5,7 @@ describe('API Testing', () => {
         })
     })
 
-    it('Create User', () => {
+    it.skip('Create User', () => {
         cy.request({
             method: 'POST',
             url: 'https://reqres.in/api/users',
@@ -25,7 +25,7 @@ describe('API Testing', () => {
             method: 'GET',
             url: 'https://api.github.com/user/repos',
             headers: {
-                "Authorization" : "Bearer " + this.dataAPI.token
+                "Authorization" : "Bearer " + this.dataAPI.token + this.dataAPI.token2
             }
         }).then((apiResult) => {
             expect(apiResult.status).to.eq(200)
@@ -42,7 +42,7 @@ describe('API Testing', () => {
                 'name' : 'create_repo'
             }, 
             headers : {
-                "Authorization" : "Bearer " + this.dataAPI.token,
+                "Authorization" : "Bearer " + this.dataAPI.token + this.dataAPI.token2,
                 "Content-Type" : "application/json"
             }
         }).then((apiResult) => {

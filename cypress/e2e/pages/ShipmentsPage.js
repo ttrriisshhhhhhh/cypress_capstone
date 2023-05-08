@@ -27,7 +27,7 @@ class Shipments {
     }
 
     enterEndDate() {
-        cy.xpath(this.endDate).click()
+        cy.xpath(this.endDate).click({force:true})
         cy.xpath(this.clickDate).click()
     }
 

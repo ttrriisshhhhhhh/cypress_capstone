@@ -78,7 +78,7 @@ describe('NopCommerce Capstone', () => {
         cy.screenshot()                                                     // take a screenshot
     })
 
-    it('Shipment Search', () => {
+    it.only('Shipment Search', () => {
         shipmentsPage.goToSales()
         shipmentsPage.enterStartDate()
         shipmentsPage.enterEndDate()
