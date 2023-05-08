@@ -5,7 +5,6 @@ import Category from "./pages/CategoriesPage"
 import Shipments from "./pages/ShipmentsPage"
 
 describe('NopCommerce Capstone', () => {
-
     const loginPage = new Login()
     const productPage = new Product()
     const countriesPage = new Country()
@@ -13,117 +12,79 @@ describe('NopCommerce Capstone', () => {
     const shipmentsPage = new Shipments()
     
     beforeEach( () => {
+        cy.fixture('appData.json').then((data) => {                         // use of fixture for easy access to the data
+            cy.visit(data.nopCommerceLink)                                  
+            cy.viewport(data.viewport)                                      // set viewport for display settings
 
-        cy.fixture('appData.json').then((data) => {
+            cy.verifyTitle('Your store. Login')                             
 
-            //go to site URL
-            cy.visit('https://admin-demo.nopcommerce.com/login?ReturnUrl=%2FAdmin')
+            loginPage.enterEmail(data.email)                                // login
+            loginPage.enterPassword(data.password)
+            loginPage.clickRememberMe()                                    
+            loginPage.clickLogin()                                          
 
-            //set viewport for display settings
-            cy.viewport(data.viewport)
-
+            cy.verifyTitle('Dashboard / nopCommerce administration')        // validation
         })
-
-        //validate title
-        cy.title().should('eq', 'Your store. Login')
-
-        //enter email and password
-        loginPage.enterEmail('admin@yourstore.com')
-        loginPage.enterPassword('admin')
-
-        //click check for remember me checkbox
-        loginPage.clickRememberMe()
-
-        //click login button
-        loginPage.clickLogin()
-
-        //validation
-        cy.title().should('eq', 'Dashboard / nopCommerce administration')
-
-        // cy.verifyElementText(cy.title(), 'Dashboard / nopCommerce administration')
-
-        // cy.verifyTitle2(cy.title(), 'Dashboard / nopCommerce administration')
-
     })
 
-    it.skip('Add Product', () => {
-
-        //go to catalog > products
-        productPage.goToProducts()
-
-        //click Add New button for adding a product
-        productPage.addProductName('Trish Test Product')
-
-        cy.xpath('//textarea[@id="ShortDescription"]').type('Short description sample')
-
-        cy.frameLoaded('#FullDescription_ifr')
-
-        cy.iframe('#FullDescription_ifr').type('Long description with iFrame plugin use.')
-
-        cy.xpath('//input[@name="Price"]/preceding-sibling::input').click()
-
-        cy.xpath('//input[@name="Price"]', {force: true}).type('100')
-
+    it('Add Product', () => {
+        productPage.goToProducts()                                          //go to catalog > products
+        productPage.addProductName('Trish Test Product')                    
+        productPage.enterProductDetails('Sample short description')
+        productPage.loadIFrame()
+        productPage.enterPrice('1000')
         productPage.clickSave()
+                                                                            // validation
+        cy.verifyElementText('div.alert.alert-success.alert-dismissable', 'The new product has been added successfully.')
 
-        cy.wait(3000)
-
-        cy.screenshot()
-
+        cy.wait(3000)                                                       
+        cy.screenshot()                                                     // take a screenshot
     })
 
-    it.skip('Search Product', () => {
-
-        productPage.goToProducts()
-
-        productPage.searchProductName('Trish Test Product')
-
+    it('Search Product', () => {
+        productPage.goToProducts()                                          
+        productPage.searchProductName('Trish Test Product')                 
         productPage.clickSeachButton()
 
+        cy.wait(3000)                                                       
+        cy.screenshot()                                                     // take a screenshot
     })
 
-    it.skip('Delete Product', () => {
-
-        productPage.goToProducts()
-
-        productPage.searchProductName('Trish Test Product')
-
+    it('Delete Product', () => {
+        productPage.goToProducts()                                          
+        productPage.searchProductName('Trish Test Product')                 
         productPage.clickSeachButton()
-
-        productPage.deleteProduct()
+        productPage.deleteProduct()              
+        
+        cy.wait(3000)                                                       
+        cy.screenshot()                                                     // take a screenshot
     })
 
-    it.skip('Import countries from CSV', () => {
-
+    it('Import countries from CSV', () => {
         countriesPage.goToCountries()
-
         countriesPage.clickImport()
-
         countriesPage.fileUpload()
 
+        cy.wait(3000)                                                       
+        cy.screenshot()                                                     // take a screenshot
     })
 
-    it.skip('Add Category with Photo', () => {
-
+    it('Add Category with Photo', () => {
         categoriesPage.goToCategory()
-
         categoriesPage.addCategoryName('Test')
-
         categoriesPage.addCategoryPhoto()
 
+        cy.wait(3000)                                                       
+        cy.screenshot()                                                     // take a screenshot
     })
-
 
     it('Shipment Search', () => {
-
         shipmentsPage.goToSales()
-
         shipmentsPage.enterStartDate()
-
         shipmentsPage.enterEndDate()
-
         shipmentsPage.clickSearch()
 
+        cy.wait(3000)                                                       
+        cy.screenshot()                                                     // take a screenshot
     })
-
 })

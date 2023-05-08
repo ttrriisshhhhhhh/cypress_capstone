@@ -1,11 +1,8 @@
 class Login {
-
     txtEmail = 'input#Email'
     txtPass = 'input#Password'
     checkboxRememberMe = '#RememberMe'
     btnLogin = '.button-1'
-
-    //Methods
 
     enterEmail(emailID) {
         cy.get(this.txtEmail).clear().type(emailID)
@@ -22,7 +19,6 @@ class Login {
     clickLogin() {
         cy.get(this.btnLogin).click()
     }
-
 }
 
 export default Login

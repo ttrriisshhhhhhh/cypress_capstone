@@ -37,22 +37,14 @@ Cypress.Commands.add('verifyElementText', (selector, expectedText) => {
     
     cy.get(selector).then((ele) => {
 
-        expect(ele.text()).to.eq(expectedText)
+        expect(ele.text()).to.contain(expectedText)
 
     })
 
 })
 
-Cypress.Commands.add('verifyTitle', (selector, expectedText) => {
+Cypress.Commands.add('verifyTitle', (expectedText) => {
     
-        expect(selector).text().to.eq(expectedText)
-
-})
-
-Cypress.Commands.add('verifyTitle2', (selector, expectedText) => {
-    
-    selector.invoke('text').then((text)=>{
-        expect(text).to.include(expectedText)
-    })
+        cy.title().should('eq', expectedText)
 
 })

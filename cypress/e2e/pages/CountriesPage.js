@@ -1,11 +1,9 @@
 class Country {
-
     configuration = '//p[contains(text(),"Configuration")]'
     countries = '//p[contains(text(),"Countries")]'
     btnImportCSV = '//button[@name="importcsv"]'
     chooseFile = '//input[@id="importcsvfile"]'
     btnImport = '//button[@class="btn btn-primary"]'
-
 
     goToCountries() {
         cy.xpath(this.configuration).click()
@@ -20,7 +18,6 @@ class Country {
         cy.xpath(this.chooseFile).attachFile('countries.csv')
         cy.xpath(this.btnImport).click()
     }
-
 }
 
 export default Country

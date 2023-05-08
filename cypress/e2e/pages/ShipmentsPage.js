@@ -9,7 +9,7 @@ class Shipments {
     clickMonth = '//a[contains(text(),"Jan")]'
     clickDay = '//a[@title="Friday, January 1, 2010"]'
     endDate = '//span[@aria-controls="EndDate_dateview"]/span[@class="k-icon k-i-calendar"]'
-    dateToday = '(//div[@class="k-animation-container"])[2]//div[@class="k-footer"]/a[@title="Monday, May 8, 2023"]'
+    clickDate = '//div[@class="k-animation-container"][2]//a[@title="Monday, May 1, 2023"]'
     btnSearch = '//button[@id="search-shipments"]'
 
     goToSales() {
@@ -28,7 +28,7 @@ class Shipments {
 
     enterEndDate() {
         cy.xpath(this.endDate).click()
-        cy.xpath(this.dateToday).click()
+        cy.xpath(this.clickDate).click()
     }
 
     clickSearch() {

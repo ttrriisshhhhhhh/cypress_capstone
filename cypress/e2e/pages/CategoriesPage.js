@@ -1,5 +1,4 @@
 class Category {
-
     catalog = '(//p[contains(text(),"Catalog")])[1]'
     categories = '//p[contains(text(),"Categories")]'
     btnAddCategory = '//a[@href="/Admin/Category/Create"]'
@@ -21,7 +20,6 @@ class Category {
         cy.xpath(this.btnUploadFile).attachFile('test.png')
         cy.xpath(this.btnSave).click()
     }
-
 }
 
 export default Category
