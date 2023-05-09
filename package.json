@@ -241,7 +241,8 @@
     "test": "mocha",
     "executeTestOnChromeHeaded" : "npx cypress run --spec .\\cypress\\e2e\\nopCommerce_spec.cy.js --browser chrome --headed",
     "executeTestOnEdgeHeadless" : "npx cypress run --spec .\\cypress\\e2e\\nopCommerce_spec.cy.js --browser edge",
-    "executeAPITests" : "npx cypress run --spec .\\cypress\\e2e\\APITesting_spec.cy.js --browser chrome"
+    "executeAPITestsHeadless" : "npx cypress run --spec .\\cypress\\e2e\\APITesting_spec.cy.js --browser chrome",
+    "executeAPITestsHeaded" : "npx cypress run --spec .\\cypress\\e2e\\APITesting_spec.cy.js --browser edge --headed"
   },
   "keywords": [],
   "author": "",

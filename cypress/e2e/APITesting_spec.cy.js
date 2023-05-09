@@ -5,7 +5,7 @@ describe('API Testing', () => {
         })
     })
 
-    it.skip('Create User', () => {
+    it('Create User', () => {
         cy.request({
             method: 'POST',
             url: 'https://reqres.in/api/users',
@@ -18,6 +18,9 @@ describe('API Testing', () => {
             expect(response.body.name).to.eq('Stella')
             expect(response.body.job).to.eq('QA Lead')
         })
+
+        cy.wait(2000)
+        cy.screenshot()
     })
 
     it('API Github Token', function() {
@@ -32,6 +35,9 @@ describe('API Testing', () => {
             expect(apiResult.body[3].full_name).to.contain('cypress_capstone')
             expect(apiResult.duration).to.be.below(2000)
         })
+
+        cy.wait(2000)
+        cy.screenshot()
     })
 
     it('API Create Repository', function() {
@@ -49,5 +55,8 @@ describe('API Testing', () => {
             expect(apiResult.status).to.eq(201)
             expect(apiResult.duration).to.be.below(2000)
         })
+
+        cy.wait(2000)
+        cy.screenshot()
     })
 })

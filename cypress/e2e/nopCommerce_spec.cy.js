@@ -37,7 +37,7 @@ describe('NopCommerce Capstone', () => {
                                                                             // validation
         cy.verifyElementText('div.alert.alert-success.alert-dismissable', 'The new product has been added successfully.')
 
-        cy.wait(3000)                                                       
+        cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
     })
 
@@ -46,7 +46,7 @@ describe('NopCommerce Capstone', () => {
         productPage.searchProductName('Trish Test Product')                 
         productPage.clickSeachButton()
 
-        cy.wait(3000)                                                       
+        cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
     })
 
@@ -56,7 +56,7 @@ describe('NopCommerce Capstone', () => {
         productPage.clickSeachButton()
         productPage.deleteProduct()              
         
-        cy.wait(3000)                                                       
+        cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
     })
 
@@ -65,7 +65,7 @@ describe('NopCommerce Capstone', () => {
         countriesPage.clickImport()
         countriesPage.fileUpload()
 
-        cy.wait(3000)                                                       
+        cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
     })
 
@@ -74,7 +74,7 @@ describe('NopCommerce Capstone', () => {
         categoriesPage.addCategoryName('Test')
         categoriesPage.addCategoryPhoto()
 
-        cy.wait(3000)                                                       
+        cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
     })
 
@@ -84,7 +84,7 @@ describe('NopCommerce Capstone', () => {
         shipmentsPage.enterEndDate()
         shipmentsPage.clickSearch()
 
-        cy.wait(3000)                                                       
+        cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
     })
 })
