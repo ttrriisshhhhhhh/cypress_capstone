@@ -27,7 +27,7 @@ describe('NopCommerce Capstone', () => {
         })
     })
 
-    it('Add Product', () => {
+    it.only('Add Product', () => {
         productPage.goToProducts()                                          //go to catalog > products
         productPage.addProductName('Trish Test Product')                    
         productPage.enterProductDetails('Sample short description')
@@ -41,10 +41,11 @@ describe('NopCommerce Capstone', () => {
         cy.screenshot()                                                     // take a screenshot
     })
 
-    it('Search Product', () => {
+    it.only('Search Product', () => {
         productPage.goToProducts()                                          
         productPage.searchProductName('Trish Test Product')                 
         productPage.clickSeachButton()
+        productPage.validateProduct()
 
         cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
@@ -78,7 +79,7 @@ describe('NopCommerce Capstone', () => {
         cy.screenshot()                                                     // take a screenshot
     })
 
-    it.only('Shipment Search', () => {
+    it.skip('Shipment Search', () => {
         shipmentsPage.goToSales()
         shipmentsPage.enterStartDate()
         shipmentsPage.enterEndDate()

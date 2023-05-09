@@ -18,6 +18,7 @@ class Shipments {
     }
 
     enterStartDate() {
+        cy.wait(1000)
         cy.xpath(this.startDate).click({force: true})
         cy.xpath(this.findRange).click({force: true}).click().click()
         cy.xpath(this.findYear).click()

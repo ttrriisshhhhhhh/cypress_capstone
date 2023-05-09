@@ -11,6 +11,7 @@ class Product {
     btnSave = '//button[@name="save"]'
     txtProductNameSearch = '//input[@id="SearchProductName"]'
     btnSearch = '//button[@id="search-products"]'
+    tableProduct = '//div[@class="dataTables_scrollBody"]//td[contains(text(), "Trish Test Product")]'
     checkboxProduct = '//table[@id="products-grid"]/tbody/tr/td/input'
     btnDelete = '//button[@id="delete-selected"]'
     btnDeleteYes = '//button[@id="delete-selected-action-confirmation-submit-button"]'
@@ -49,7 +50,11 @@ class Product {
 
     clickSeachButton() {
         cy.xpath(this.btnSearch).click()
-        cy.wait(3000)
+        cy.wait(2000)
+    }
+
+    validateProduct() {
+        cy.xpath(this.tableProduct).should('exist')
     }
 
     deleteProduct() {
