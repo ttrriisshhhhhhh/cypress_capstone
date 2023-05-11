@@ -54,14 +54,14 @@ class Product {
     }
 
     validateProduct() {
-        cy.xpath(this.tableProduct).should('exist')
+        cy.xpath(this.tableProduct).should('exist')                 // validates that 'Trish Test Product exists'
     }
 
     deleteProduct() {
         cy.xpath(this.checkboxProduct).check()
         cy.xpath(this.btnDelete).click()
         cy.xpath(this.btnDeleteYes).click()
-    }  
+    }
 }
 
 export default Product

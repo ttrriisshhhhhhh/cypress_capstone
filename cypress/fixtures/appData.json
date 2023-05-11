@@ -2,5 +2,16 @@
     "nopCommerceLink" : "https://admin-demo.nopcommerce.com/login?ReturnUrl=%2FAdmin",
     "viewport" : "macbook-16",
     "email" : "admin@yourstore.com",
-    "password" : "admin"
+    "password" : "admin",
+    "productPage" : "Products / nopCommerce administration",
+    "elementDiv" : "div.alert.alert-success.alert-dismissable",
+    "tableEmpty" : "td.dataTables_empty",
+    "product" : {
+        "name" : "Trish Test Product",
+        "description" : "Sample short description",
+        "price" : "1000"
+    },
+    "category" : {
+        "name" : "Test Category"
+    }
 }

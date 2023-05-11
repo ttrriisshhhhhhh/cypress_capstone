@@ -45,6 +45,15 @@ Cypress.Commands.add('verifyElementText', (selector, expectedText) => {
 
 Cypress.Commands.add('verifyTitle', (expectedText) => {
     
-        cy.title().should('eq', expectedText)
+    cy.title().should('eq', expectedText)
 
+})
+
+Cypress.Commands.add('login', (email, password) => {
+
+    cy.get('input#Email').clear().type(email)
+    cy.get('input#Password').clear().type(password)
+    cy.get('#RememberMe').check()
+    cy.get('.button-1').click()
+                                               
 })

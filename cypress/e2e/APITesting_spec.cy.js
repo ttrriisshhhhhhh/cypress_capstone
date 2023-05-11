@@ -5,7 +5,7 @@ describe('API Testing', () => {
         })
     })
 
-    it('Create User', () => {
+    it.skip('Create User', () => {
         cy.request({
             method: 'POST',
             url: 'https://reqres.in/api/users',

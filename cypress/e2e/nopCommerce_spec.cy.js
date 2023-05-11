@@ -12,80 +12,108 @@ describe('NopCommerce Capstone', () => {
     const shipmentsPage = new Shipments()
     
     beforeEach( () => {
-        cy.fixture('appData.json').then((data) => {                         // use of fixture for easy access to the data
+        cy.fixture('appData.json').then(function(data) {                    // use of fixture for easy access to the data
+            this.data = data
+            
             cy.visit(data.nopCommerceLink)                                  
             cy.viewport(data.viewport)                                      // set viewport for display settings
 
-            cy.verifyTitle('Your store. Login')                             
+            cy.verifyTitle('Your store. Login')       
 
-            loginPage.enterEmail(data.email)                                // login
-            loginPage.enterPassword(data.password)
-            loginPage.clickRememberMe()                                    
-            loginPage.clickLogin()                                          
+            cy.login(data.email, data.password)                             // custom login command           
 
             cy.verifyTitle('Dashboard / nopCommerce administration')        // validation
         })
     })
 
-    it.only('Add Product', () => {
+    it('Add Product', function() {
         productPage.goToProducts()                                          //go to catalog > products
-        productPage.addProductName('Trish Test Product')                    
-        productPage.enterProductDetails('Sample short description')
+        
+        cy.verifyTitle('Products / nopCommerce administration')
+
+        productPage.addProductName(this.data.product.name)                    
+        productPage.enterProductDetails(this.data.product.description)
         productPage.loadIFrame()
-        productPage.enterPrice('1000')
+        productPage.enterPrice(this.data.product.price)
         productPage.clickSave()
                                                                             // validation
-        cy.verifyElementText('div.alert.alert-success.alert-dismissable', 'The new product has been added successfully.')
+        cy.verifyElementText(this.data.elementDiv, 'The new product has been added successfully.')
 
         cy.wait(2000)                                                       
         cy.screenshot()                                                     // take a screenshot
     })
 
-    it.only('Search Product', () => {
-        productPage.goToProducts()                                          
-        productPage.searchProductName('Trish Test Product')                 
+    it('Search Product', function() {
+        productPage.goToProducts()   
+        
+        cy.verifyTitle('Products / nopCommerce administration')
+
+        productPage.searchProductName(this.data.product.name)                 
         productPage.clickSeachButton()
         productPage.validateProduct()
 
         cy.wait(2000)                                                       
-        cy.screenshot()                                                     // take a screenshot
+        cy.screenshot()                                                    
     })
 
-    it('Delete Product', () => {
-        productPage.goToProducts()                                          
-        productPage.searchProductName('Trish Test Product')                 
+    it('Delete Product', function() {
+        productPage.goToProducts()             
+        
+        cy.verifyTitle('Products / nopCommerce administration')
+        
+        productPage.searchProductName(this.data.product.name)                 
         productPage.clickSeachButton()
         productPage.deleteProduct()              
         
         cy.wait(2000)                                                       
-        cy.screenshot()                                                     // take a screenshot
+        cy.screenshot()                                                  
     })
 
-    it('Import countries from CSV', () => {
+    it('Import countries from CSV', function() {
         countriesPage.goToCountries()
+
+        cy.verifyTitle('Countries / nopCommerce administration')
+
         countriesPage.clickImport()
         countriesPage.fileUpload()
 
+        cy.verifyElementText(this.data.elementDiv, '75 states have been successfully imported')
+
         cy.wait(2000)                                                       
-        cy.screenshot()                                                     // take a screenshot
+        cy.screenshot()                                                    
     })
 
-    it('Add Category with Photo', () => {
+    it('Add Category with Photo', function() {
         categoriesPage.goToCategory()
-        categoriesPage.addCategoryName('Test')
+
+        cy.verifyTitle('Categories / nopCommerce administration')
+
+        categoriesPage.addCategoryName(this.data.category.name)
         categoriesPage.addCategoryPhoto()
 
+        cy.verifyElementText(this.data.elementDiv, 'The new category has been added successfully.')
+
         cy.wait(2000)                                                       
-        cy.screenshot()                                                     // take a screenshot
+        cy.screenshot()                                                     
     })
 
-    it.skip('Shipment Search', () => {
+    it.skip('Shipment Search', function() {
         shipmentsPage.goToSales()
-        shipmentsPage.enterStartDate()
+
+        cy.verifyTitle('Shipments / nopCommerce administration')
+
+        shipmentsPage.enterStartDateNegative()                              // table should be empty
+        shipmentsPage.enterEndDateNegative()
+        shipmentsPage.clickSearch()
+        
+        cy.verifyElementText(this.data.tableEmpty, 'No data available in table')
+
+        shipmentsPage.enterStartDate()                                      // search results are shown
         shipmentsPage.enterEndDate()
         shipmentsPage.clickSearch()
+        shipmentsPage.validateResults()
 
         cy.wait(2000)                                                       
-        cy.screenshot()                                                     // take a screenshot
+        cy.screenshot()                                                     
     })
 })
